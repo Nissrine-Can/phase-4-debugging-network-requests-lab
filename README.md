@@ -61,13 +61,17 @@ developing your own process.
 ## Your Notes Here
 
 - Add a new toy when the toy form is submitted
+ error found: 500 Internal Server Error
+  - How I debugged: I opened Rails server log and looked through the last request that came through. The error found was:
+  NameError (uninitialized constant ToysController::Toys):
+  app/controllers/toys_controller.rb:10:in `create'
 
-  - How I debugged:
+  I read error message and traced the error (the constant Toys should not be pluralized)
 
 - Update the number of likes for a toy
-
-  - How I debugged:
+ error: the number of likes does not update
+  - How I debugged: I checked the console and found a SyntaxError: Unexpected end of JSON input. I checked the controller action and it's missing json: method
 
 - Donate a toy to Goodwill (and delete it from our database)
-
-  - How I debugged:
+error: 404 not found
+  - How I debugged: I checked Network tab on frontend as well as Rails server log. I found a routing error (no route matches [delete]). I added a new route (destroy) to the resource method in config/routes.rb
